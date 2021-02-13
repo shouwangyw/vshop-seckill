@@ -5,223 +5,73 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.2.5.RELEASE</version>
+    <groupId>com.veli.vshop</groupId>
+    <artifactId>vshop-dependencies</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../vshop-dependencies</relativePath>
   </parent>
 
-  <groupId>com.vshop</groupId>
   <artifactId>vshop-seckill-parent</artifactId>
   <packaging>pom</packaging>
   <version>${reversion}</version>
 
-  <modules>
-
-  </modules>
-
   <properties>
-    <reversion>1.0${changelist}</reversion>
-    <changelist>-SNAPSHOT</changelist>
+    <reversion>1.0.0-SNAPSHOT</reversion>
 
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>1.8</java.version>
-    <mybatis.starter.version>1.3.2</mybatis.starter.version>
-    <mapper.starter.version>2.0.2</mapper.starter.version>
-    <druid.starter.version>1.1.9</druid.starter.version>
-    <mysql.version>5.1.32</mysql.version>
-    <pageHelper.starter.version>1.2.3</pageHelper.starter.version>
-    <activation>1.1.1</activation>
-    <lambok>1.16.20</lambok>
-    <fastjson>1.2.9</fastjson>
-    <joda-time>2.9.7</joda-time>
-    <comment-lang>3.4</comment-lang>
-    <fileupload>1.3</fileupload>
-    <dom4j>1.6.1</dom4j>
-    <beanutils>1.8.3</beanutils>
-    <collections>3.2.1</collections>
-    <commons-logging>1.1.3</commons-logging>
-    <commons-configuration>1.10</commons-configuration>
-    <commons-http>3.1</commons-http>
-    <ehcache-version>2.10.1</ehcache-version>
-    <spring-boot>2.2.5.RELEASE</spring-boot>
-    <jackson>2.11.0</jackson>
-    <servlet-http>4.0.1</servlet-http>
-    <commons-io>2.6</commons-io>
-    <httpclient>4.5.11</httpclient>
-    <rocketma-all>4.5.1</rocketma-all>
-    <sharding-jdbc>2.0.0.M3</sharding-jdbc>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.testTarget>1.8</maven.compiler.testTarget>
+    <maven.compiler.testSource>1.8</maven.compiler.testSource>
   </properties>
 
-  <!-- 管理坐标 -->
-  <dependencyManagement>
-    <dependencies>
-      <!-- spring-boot -->
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${spring-boot}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
+  <modules>
+    <module>vshop-mybatis-generator</module>
+    <module>vshop-common</module>
+    <module>vshop-dao</module>
+    <module>vshop-service</module>
+    <module>vshop-web</module>
+  </modules>
 
-      <!-- mybatis启动器 -->
-      <dependency>
-        <groupId>org.mybatis.spring.boot</groupId>
-        <artifactId>mybatis-spring-boot-starter</artifactId>
-        <version>${mybatis.starter.version}</version>
-      </dependency>
-      <!-- sharding-jdbc -->
-      <dependency>
-        <groupId>io.shardingjdbc</groupId>
-        <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
-        <version>${sharding-jdbc}</version>
-      </dependency>
-      <!-- 通用Mapper启动器 -->
-      <dependency>
-        <groupId>tk.mybatis</groupId>
-        <artifactId>mapper-spring-boot-starter</artifactId>
-        <version>${mapper.starter.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.github.pagehelper</groupId>
-        <artifactId>pagehelper-spring-boot-starter</artifactId>
-        <version>${pageHelper.starter.version}</version>
-      </dependency>
-      <!-- druid启动器 -->
-      <dependency>
-        <groupId>com.alibaba</groupId>
-        <artifactId>druid-spring-boot-starter</artifactId>
-        <version>${druid.starter.version}</version>
-      </dependency>
-      <!-- mysql驱动 -->
-      <dependency>
-        <groupId>mysql</groupId>
-        <artifactId>mysql-connector-java</artifactId>
-        <version>${mysql.version}</version>
-      </dependency>
-
-      <!-- servlet -->
-      <dependency>
-        <groupId>javax.servlet</groupId>
-        <artifactId>javax.servlet-api</artifactId>
-        <version>${servlet-http}</version>
-      </dependency>
-      <!-- activation -->
-      <dependency>
-        <groupId>javax.activation</groupId>
-        <artifactId>activation</artifactId>
-        <version>${activation}</version>
-      </dependency>
-
-      <!-- commons-xxx -->
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>${comment-lang}</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>${commons-io}</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-beanutils</groupId>
-        <artifactId>commons-beanutils</artifactId>
-        <version>${beanutils}</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-digester</groupId>
-        <artifactId>commons-digester</artifactId>
-        <version>${digester}</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-collections</groupId>
-        <artifactId>commons-collections</artifactId>
-        <version>${collections}</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-logging</groupId>
-        <artifactId>commons-logging</artifactId>
-        <version>${commons-logging}</version>
-      </dependency>
-      <!-- 读取资源文件(例properties) -->
-      <dependency>
-        <groupId>commons-configuration</groupId>
-        <artifactId>commons-configuration</artifactId>
-        <version>${commons-configuration}</version>
-      </dependency>
-
-      <!-- rocketMQ -->
-      <dependency>
-        <groupId>org.apache.rocketmq</groupId>
-        <artifactId>rocketmq-common</artifactId>
-        <version>${rocketma-all}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.rocketmq</groupId>
-        <artifactId>rocketmq-client</artifactId>
-        <version>${rocketma-all}</version>
-      </dependency>
-
-      <!-- fastjson -->
-      <dependency>
-        <groupId>com.alibaba</groupId>
-        <artifactId>fastjson</artifactId>
-        <version>${fastjson}</version>
-      </dependency>
-      <!-- jackson -->
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-databind</artifactId>
-        <version>${jackson}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-annotations</artifactId>
-        <version>${jackson}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>${jackson}</version>
-      </dependency>
-
-      <!-- httpclient -->
-      <dependency>
-        <groupId>net.sf.ehcache</groupId>
-        <artifactId>ehcache</artifactId>
-        <version>${ehcache-version}</version>
-      </dependency>
-
-      <!-- joda-time -->
-      <dependency>
-        <groupId>joda-time</groupId>
-        <artifactId>joda-time</artifactId>
-        <version>${joda-time}</version>
-      </dependency>
-
-      <!-- lambok -->
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-        <version>${lambok}</version>
-        <scope>provided</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>io.springfox</groupId>
+      <artifactId>springfox-swagger2</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+    </dependency>
+  </dependencies>
 
   <build>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>${java.version}</source>
-          <target>${java.version}</target>
-          <encoding>${project.build.sourceEncoding}</encoding>
-        </configuration>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
     </plugins>
+
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <includes>
+          <include>**/*.xml</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+        <includes>
+          <include>**/*.yml</include>
+          <include>**/*.properties</include>
+          <include>**/*.xml</include>
+          <include>**/*.factories</include>
+        </includes>
+        <filtering>false</filtering>
+      </resource>
+    </resources>
   </build>
 </project>

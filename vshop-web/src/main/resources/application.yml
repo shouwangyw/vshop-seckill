@@ -1,0 +1,59 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: vshop-seckill-web
+  datasource:
+    url: jdbc:mysql://192.168.254.128:3306/vshop?useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    druid:
+      #配置初始化大小、最小、最大
+      initial-size: 1
+      min-idle: 5
+      max-active: 10
+      max-wait: 10000
+      time-between-eviction-runs-millis: 600000
+      # 配置一个连接在池中最大空闲时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      # 设置从连接池获取连接时是否检查连接有效性，true时，每次都检查;false时，不检查
+      test-on-borrow: true
+      #设置往连接池归还连接时是否检查连接有效性，true时，每次都检查;false时，不检查
+      test-on-return: true
+      # 设置从连接池获取连接时是否检查连接有效性，true时，如果连接空闲时间超过minEvictableIdleTimeMillis进行检查，否则不检查;false时，不检查
+      test-while-idle: true
+      # 检验连接是否有效的查询语句。如果数据库Driver支持ping()方法，则优先使用ping()方法进行检查，否则使用validationQuery查询进行检查。(Oracle jdbc Driver目前不支持ping方法)
+      validation-query: select 1 from dual
+      keep-alive: true
+      remove-abandoned: true
+      remove-abandoned-timeout: 80
+      log-abandoned: true
+      #打开PSCache，并且指定每个连接上PSCache的大小，Oracle等支持游标的数据库，打开此开关，会以数量级提升性能，具体查阅PSCache相关资料
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 配置间隔多久启动一次DestroyThread，对连接池内的连接才进行一次检测，单位是毫秒。
+      #检测时:
+      #1.如果连接空闲并且超过minIdle以外的连接，如果空闲时间超过minEvictableIdleTimeMillis设置的值则直接物理关闭。
+      #2.在minIdle以内的不处理。
+  redis:
+    host: 192.168.254.128
+    port: 6379
+mybatis:
+  type-aliases-package: com.veli.vshop.seckill.dao.entity
+mapper:
+  not-empty: false
+  identity: mysql
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api
+# redisson lock
+redisson:
+  address: redis://192.168.254.128:6379
+logging:
+  level:
+    root: info
+    logger.com.ibatis: DEBUG
+    com.veli.vshop.seckill: DEBUG

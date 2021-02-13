@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <properties resource="generatorConfig.properties" />
+
+    <!-- database: shop -->
+    <context id="dbvShop" defaultModelType="flat" targetRuntime="MyBatis3" >
+        <!-- 生成的 Java 文件的编码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- 格式化 Java 代码 -->
+        <property name="javaFormatter" value="org.mybatis.generator.api.dom.DefaultJavaFormatter"/>
+        <!-- 格式化 XML 代码 -->
+        <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
+        <!-- 自定义MyBatis插件 -->
+        <plugin type="com.veli.mybatis.generator.plugin.MyBatisPlugin" />
+        <!-- 覆盖生成XML文件 -->
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
+        <!-- 关闭默认注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!-- 数据库连接 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="${dbvShop.connectionURL}" userId="${baseUsername}" password="${basePassword}">
+            <property name="useInformationSchema" value="true" />
+        </jdbcConnection>
+        <!-- 自定义Java类型解析器 -->
+        <javaTypeResolver type="com.veli.mybatis.generator.resolver.MyJavaTypeResolver"/>
+        <!-- java 实体类 生成位置 -->
+        <javaModelGenerator targetPackage="${basePackage}.entity" targetProject="${basePath}/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!-- java Mapper类、XML文件 生成位置 -->
+        <sqlMapGenerator targetPackage="${basePackage}.mapper" targetProject="${basePath}/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="${basePackage}.mapper" targetProject="${basePath}/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!-- 指定需要自动生成的表 -->
+        <table tableName="tb_user" domainObjectName="TbUser"/>
+        <table tableName="tb_areas" domainObjectName="TbAreas"/>
+        <table tableName="tb_cities" domainObjectName="TbCities"/>
+        <table tableName="tb_address" domainObjectName="TbAddress"/>
+        <table tableName="tb_seckill_goods" domainObjectName="TbSeckillGoods"/>
+        <table tableName="tb_seckill_order" domainObjectName="TbSeckillOrder"/>
+    </context>
+
+</generatorConfiguration>
