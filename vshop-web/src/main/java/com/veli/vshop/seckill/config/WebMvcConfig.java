@@ -23,7 +23,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 // 登录
                 .excludePathPatterns("/user/login/**")
                 // 静态资源
-                .excludePathPatterns("/js/**", "/css/**", "/images/**", "/lib/**", "/fonts/**")
+                .excludePathPatterns("/js/**", "/css/**", "/images/**", "/lib/**", "/fonts/**", "/favicon.ico")
                 // swagger-ui
                 .excludePathPatterns("/swagger-resources/**", "/webjars/**", "/v2/**", "/doc.html/**");
     }

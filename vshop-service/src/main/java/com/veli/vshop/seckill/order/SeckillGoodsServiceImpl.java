@@ -38,8 +38,8 @@ public class SeckillGoodsServiceImpl implements SeckillGoodsService {
     public TbSeckillGoods queryGoodsDetails(Integer id) {
         // 直接从数据库查询: 主键查询——CPU不耗时操作
         TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKey(id);
-        // 模拟程序耗时操作，如果方法是一个比较耗时的操作，性能优化非常有必要的！！
-        TimeUtils.sleepSec(1);
+//        // 模拟程序耗时操作，如果方法是一个比较耗时的操作，性能优化非常有必要的！！
+//        TimeUtils.sleepSec(1);
         log.info("==>> 模拟耗时操作，睡眠1s时间！对象占用jvm堆内存大小: {}", CommonUtils.size(seckillGoods));
         return seckillGoods;
     }
