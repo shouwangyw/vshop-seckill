@@ -11,7 +11,7 @@ import javax.annotation.Resource;
  * @author yangwei
  * @date 2021-02-11 09:36
  */
-@Configuration
+//@Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
     @Resource
     private AuthInterceptor authInterceptor;

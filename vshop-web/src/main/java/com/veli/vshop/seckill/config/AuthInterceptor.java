@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author yangwei
  * @date 2021-02-11 09:35
  */
-@Component
+//@Component
 public class AuthInterceptor implements HandlerInterceptor {
     @Resource
     private UserService userService;
