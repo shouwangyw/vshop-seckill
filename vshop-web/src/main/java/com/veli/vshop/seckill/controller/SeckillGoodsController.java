@@ -36,6 +36,6 @@ public class SeckillGoodsController {
     @ApiOperation("获取商品详情信息")
     @GetMapping("/goods/detail/{id}")
     public RestResponse<TbSeckillGoods> queryDetails(@PathVariable Integer id) {
-        return RestResponse.success(seckillGoodsService.queryGoodsDetails(id));
+        return RestResponse.success(seckillGoodsService.queryGoodsDetailsByCache(id));
     }
 }

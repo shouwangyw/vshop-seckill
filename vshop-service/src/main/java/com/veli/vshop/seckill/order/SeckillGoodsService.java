@@ -20,4 +20,8 @@ public interface SeckillGoodsService {
      * 根据id查询商品详情信息
      */
     TbSeckillGoods queryGoodsDetails(Integer id);
+    /**
+     * 根据id查询商品详情信息
+     */
+    TbSeckillGoods queryGoodsDetailsByCache(Integer id);
 }

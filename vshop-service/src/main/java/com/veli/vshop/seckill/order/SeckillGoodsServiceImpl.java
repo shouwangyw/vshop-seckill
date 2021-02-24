@@ -2,25 +2,33 @@ package com.veli.vshop.seckill.order;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.google.common.cache.Cache;
 import com.veli.vshop.seckill.dao.entity.TbSeckillGoods;
 import com.veli.vshop.seckill.dao.mapper.TbSeckillGoodsMapper;
 import com.veli.vshop.seckill.domain.BasePageInfo;
+import com.veli.vshop.seckill.redis.RedisService;
 import com.veli.vshop.seckill.util.CommonUtils;
 import com.veli.vshop.seckill.util.TimeUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author yangwei
- * @date 2021-02-13 20:16
  */
 @Slf4j
 @Service
 public class SeckillGoodsServiceImpl implements SeckillGoodsService {
+    private static final String SECKILL_GOODS_CACHE_PREFIX = "seckill_goods_";
+
     @Resource
     private TbSeckillGoodsMapper seckillGoodsMapper;
+    @Resource
+    private Cache<String, Object> guavaCacche;
+    @Resource
+    private RedisService redisService;
 
     @Override
     public boolean saveOne(TbSeckillGoods tbSeckillGoods) {
@@ -41,6 +49,30 @@ public class SeckillGoodsServiceImpl implements SeckillGoodsService {
         // 模拟程序耗时操作，如果方法是一个比较耗时的操作，性能优化非常有必要的！！
         TimeUtils.sleepSec(1);
         log.info("==>> 模拟耗时操作，睡眠1s时间！对象占用jvm堆内存大小: {}", CommonUtils.size(seckillGoods));
+        return seckillGoods;
+    }
+
+    @Override
+    public TbSeckillGoods queryGoodsDetailsByCache(Integer id) {
+        String cacheKey = SECKILL_GOODS_CACHE_PREFIX + id;
+        // 1、先从JVM堆内存中读取数据，使用 guava 缓存
+        TbSeckillGoods seckillGoods = (TbSeckillGoods) guavaCacche.getIfPresent(cacheKey);
+        if (seckillGoods != null) {
+            return seckillGoods;
+        }
+        // 2、如果JVM堆内存中不存在，则从分布式缓存(redis)中查询
+        seckillGoods = redisService.getObjValue(cacheKey);
+        if (seckillGoods != null) {
+            // 添加进guava缓存
+            guavaCacche.put(cacheKey, seckillGoods);
+            return seckillGoods;
+        }
+        // 3、如果分布式缓存(redis)中还没有，则从数据库查询
+        seckillGoods = seckillGoodsMapper.selectByPrimaryKey(id);
+        if (seckillGoods != null && seckillGoods.getStatus() == 1) {
+            // 添加进分布式缓存(redis)中
+            redisService.setObjValue(cacheKey, seckillGoods, 30, TimeUnit.MINUTES);
+        }
         return seckillGoods;
     }
 }
