@@ -1,5 +1,5 @@
 server:
-  port: 9000
+  port: 8080
 spring:
   application:
     name: vshop-seckill-web
@@ -52,6 +52,9 @@ springfox:
 # redisson lock
 redisson:
   address: redis://192.168.254.128:6379
+# zookeeper
+zookeeper:
+  address: 192.168.254.120:2181
 logging:
   level:
     root: info

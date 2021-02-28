@@ -12,6 +12,8 @@ import lombok.experimental.Accessors;
 public class BaseUser {
     @ApiModelProperty("主键ID")
     private Long id;
+    @ApiModelProperty("用户唯一标识")
+    private String guid;
     @ApiModelProperty("用户名")
     private String username;
     @ApiModelProperty("密码，加密存储")

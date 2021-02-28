@@ -9,6 +9,7 @@ import com.veli.vshop.seckill.redis.RedisService;
 import com.veli.vshop.seckill.util.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -87,6 +88,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public BaseUser queryUserByToken(String token) {
+        if (StringUtils.isBlank(token)) {
+            return null;
+        }
         return redisService.getObjValue(token);
     }
 

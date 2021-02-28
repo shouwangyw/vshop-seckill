@@ -23,7 +23,12 @@ public enum RestResponseCode {
     OTHER_ERROR(-1000, "other error"),
 
     /** 秒杀商品相关 **/
-
+    SEC_GOODS_NOT_EXSISTS(2002, "商品不存在"),
+    SEC_ACTIVE_NOT_START(2003, "活动未开始"),
+    SEC_ACTIVE_END(2004, "活动已结束"),
+    SEC_NOT_UP(2005, "商品未审核"),
+    SEC_GOODS_END(2006, "商品已售罄"),
+    SEC_GOODS_STOCK_FAIL(2007, "下单失败"),
     ;
 
     private int code;
