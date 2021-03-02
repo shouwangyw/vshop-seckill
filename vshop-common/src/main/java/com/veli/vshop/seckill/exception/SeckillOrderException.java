@@ -14,4 +14,8 @@ public class SeckillOrderException extends CustomException {
     public SeckillOrderException(RestResponseCode code) {
         super(code);
     }
+
+    public SeckillOrderException(RestResponseCode code, String msg) {
+        super(code, msg);
+    }
 }

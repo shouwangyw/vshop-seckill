@@ -15,6 +15,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.concurrent.TimeUnit;
 
+import static com.veli.vshop.seckill.domain.CommonConstants.SEC_KILL_GOODS_LOCK_PREFIX;
+
 /**
  * @author yangwei
  */
@@ -24,7 +26,6 @@ import java.util.concurrent.TimeUnit;
 @Aspect
 @Order(1)
 public class LockRedisAspect {
-    private static final String SECKILL_GOODS_PREFIX = "seckill_goods_lock_";
     /**
      * 定义锁对象
      */
@@ -47,7 +48,7 @@ public class LockRedisAspect {
         // 初始化一个对象
         Object obj = null;
         // 加锁: 先获取一把锁
-        String lockKey = SECKILL_GOODS_PREFIX + id;
+        String lockKey = SEC_KILL_GOODS_LOCK_PREFIX + id;
         boolean result = RedissonLockUtils.tryLock(lockKey, 3, 10, TimeUnit.SECONDS);
 
         try {

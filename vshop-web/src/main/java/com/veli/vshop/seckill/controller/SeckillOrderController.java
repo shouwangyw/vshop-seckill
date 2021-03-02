@@ -27,7 +27,7 @@ public class SeckillOrderController {
     @Resource
     private SeckillOrderService seckillOrderService;
 
-    @ApiOperation("普通下单操作")
+    @ApiOperation("① 普通下单操作")
     @GetMapping("/order/{id}/{token}")
     public RestResponse<Boolean> generalKilled(@PathVariable Long id,
                                                @PathVariable String token) {
@@ -39,7 +39,7 @@ public class SeckillOrderController {
 //        return RestResponse.success(seckillOrderService.generalKilledByLock(id, baseUser.getGuid()));
     }
 
-    @ApiOperation("数据库悲观锁下单，在分布式模式下控制库存")
+    @ApiOperation("② 数据库悲观锁下单，在分布式模式下控制库存")
     @GetMapping("/order/sql/{id}/{token}")
     public RestResponse<Boolean> sqlLockKilled(@PathVariable Long id,
                                                @PathVariable String token) {
@@ -50,7 +50,7 @@ public class SeckillOrderController {
         return RestResponse.success(seckillOrderService.sqlLockKilled(id, baseUser.getGuid()));
     }
 
-    @ApiOperation("数据库乐观锁下单，在分布式模式下控制库存")
+    @ApiOperation("③ 数据库乐观锁下单，在分布式模式下控制库存")
     @GetMapping("/order/version/{id}/{token}")
     public RestResponse<Boolean> versionLockKilled(@PathVariable Long id,
                                                    @PathVariable String token) {
@@ -61,7 +61,7 @@ public class SeckillOrderController {
         return RestResponse.success(seckillOrderService.versionLockKilled(id, baseUser.getGuid()));
     }
 
-    @ApiOperation("Redis分布式锁下单，在分布式模式下控制库存")
+    @ApiOperation("④ Redis分布式锁下单，在分布式模式下控制库存")
     @GetMapping("/order/redis/{id}/{token}")
     public RestResponse<Boolean> redisLockKilled(@PathVariable Long id,
                                                  @PathVariable String token) {
@@ -70,5 +70,16 @@ public class SeckillOrderController {
             return RestResponse.error(RestResponseCode.TOKEN_OVERTIME);
         }
         return RestResponse.success(seckillOrderService.redisLockKilled(id, baseUser.getGuid()));
+    }
+
+    @ApiOperation("⑤ 利用Redis原子操作，实现库存控制和缓存优化")
+    @GetMapping("/order/cache/{id}/{token}")
+    public RestResponse<Boolean> redisCacheKilled(@PathVariable Long id,
+                                                  @PathVariable String token) {
+        BaseUser baseUser = userService.queryUserByToken(token);
+        if (baseUser == null) {
+            return RestResponse.error(RestResponseCode.TOKEN_OVERTIME);
+        }
+        return RestResponse.success(seckillOrderService.redisCacheKilled(id, baseUser.getGuid()));
     }
 }

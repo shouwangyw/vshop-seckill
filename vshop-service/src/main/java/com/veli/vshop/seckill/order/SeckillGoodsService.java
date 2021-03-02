@@ -24,4 +24,8 @@ public interface SeckillGoodsService {
      * 根据id查询商品详情信息
      */
     TbSeckillGoods queryGoodsDetailsByCache(Integer id);
+    /**
+     * 刷新Redis缓存
+     */
+    boolean refreshCache(Integer id);
 }

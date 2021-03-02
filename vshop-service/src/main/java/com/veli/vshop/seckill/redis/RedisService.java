@@ -2,6 +2,8 @@ package com.veli.vshop.seckill.redis;
 
 import com.veli.vshop.seckill.util.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +17,8 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Service
 public class RedisService {
+    @Resource
+    private RedisTemplate<String, Object> redisTemplate;
     @Resource
     private ValueOperations<String, Integer> opsForValueInt;
     @Resource
@@ -35,12 +39,20 @@ public class RedisService {
         return opsForValueInt.get(key);
     }
 
+    public Long incrInt(final String key, int delta) {
+        return opsForValueInt.increment(key, delta);
+    }
+
     public void setLongValue(final String key, final Long val) {
         opsForValueLong.set(key, val);
     }
 
     public Long getLongValue(final String key) {
         return opsForValueLong.get(key);
+    }
+
+    public Long incrLong(final String key, int delta) {
+        return opsForValueLong.increment(key, delta);
     }
 
     public void setJsonObj(final String key, final Object obj) {
@@ -59,4 +71,21 @@ public class RedisService {
         return (T) opsForValueObj.get(key);
     }
     //-- endregion
+
+    public int removeAll(String... keys) {
+        if (ArrayUtils.isEmpty(keys)) {
+            return 0;
+        }
+        int counter = 0;
+        for (String key : keys) {
+            if (remove(key)) {
+                counter++;
+            }
+        }
+        return counter;
+    }
+
+    public boolean remove(String key) {
+        return redisTemplate.delete(key);
+    }
 }

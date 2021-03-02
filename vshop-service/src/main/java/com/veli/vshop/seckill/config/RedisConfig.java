@@ -89,6 +89,9 @@ public class RedisConfig implements Serializable {
     RedisTemplate<String, Integer> intRedisTemplate(RedisConnectionFactory connectionFactory) {
         RedisTemplate<String, Integer> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(connectionFactory);
+
+        settingSerializer(redisTemplate);
+
         return redisTemplate;
     }
 
@@ -97,6 +100,9 @@ public class RedisConfig implements Serializable {
     RedisTemplate<String, String> strRedisTemplate(RedisConnectionFactory connectionFactory) {
         RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(connectionFactory);
+
+        settingSerializer(redisTemplate);
+
         return redisTemplate;
     }
 
@@ -104,6 +110,9 @@ public class RedisConfig implements Serializable {
     RedisTemplate<String, Long> longRedisTemplate(RedisConnectionFactory connectionFactory) {
         RedisTemplate<String, Long> redisTemplate = new RedisTemplate<>();
         redisTemplate.setConnectionFactory(connectionFactory);
+
+        settingSerializer(redisTemplate);
+
         return redisTemplate;
     }
 

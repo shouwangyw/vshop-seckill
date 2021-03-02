@@ -26,4 +26,8 @@ public interface SeckillOrderService {
      * Redis分布式锁下单，在分布式模式下控制库存
      */
     boolean redisLockKilled(Long id, String userId);
+    /**
+     * 利用Redis原子操作，实现库存控制和缓存优化
+     */
+    boolean redisCacheKilled(Long id, String userId);
 }

@@ -15,6 +15,10 @@
 
   <dependencies>
     <dependency>
+      <groupId>com.lmax</groupId>
+      <artifactId>disruptor</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.redisson</groupId>
       <artifactId>redisson</artifactId>
     </dependency>

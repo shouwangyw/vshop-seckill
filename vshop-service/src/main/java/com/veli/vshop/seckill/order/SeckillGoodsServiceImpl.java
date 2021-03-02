@@ -15,14 +15,15 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.concurrent.TimeUnit;
 
+import static com.veli.vshop.seckill.domain.CommonConstants.SEC_KILL_GOODS_CACHE_PREFIX;
+import static com.veli.vshop.seckill.domain.CommonConstants.SEC_KILL_GOODS_STOCK_CACHE_PREFIX;
+
 /**
  * @author yangwei
  */
 @Slf4j
 @Service
 public class SeckillGoodsServiceImpl implements SeckillGoodsService {
-    private static final String SECKILL_GOODS_CACHE_PREFIX = "seckill_goods_";
-
     @Resource
     private TbSeckillGoodsMapper seckillGoodsMapper;
     @Resource
@@ -54,7 +55,7 @@ public class SeckillGoodsServiceImpl implements SeckillGoodsService {
 
     @Override
     public TbSeckillGoods queryGoodsDetailsByCache(Integer id) {
-        String cacheKey = SECKILL_GOODS_CACHE_PREFIX + id;
+        String cacheKey = SEC_KILL_GOODS_CACHE_PREFIX + id;
         // 1、先从JVM堆内存中读取数据，使用 guava 缓存
         TbSeckillGoods seckillGoods = (TbSeckillGoods) guavaCacche.getIfPresent(cacheKey);
         if (seckillGoods != null) {
@@ -74,5 +75,20 @@ public class SeckillGoodsServiceImpl implements SeckillGoodsService {
             redisService.setObjValue(cacheKey, seckillGoods, 30, TimeUnit.MINUTES);
         }
         return seckillGoods;
+    }
+
+    @Override
+    public boolean refreshCache(Integer id) {
+        redisService.removeAll(SEC_KILL_GOODS_CACHE_PREFIX + id, SEC_KILL_GOODS_STOCK_CACHE_PREFIX + id);
+        if (id == null) {
+            return false;
+        }
+        TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKey(id);
+        if (seckillGoods == null) {
+            return false;
+        }
+        redisService.setObjValue(SEC_KILL_GOODS_CACHE_PREFIX + id, seckillGoods, 30, TimeUnit.MINUTES);
+        redisService.setIntValue(SEC_KILL_GOODS_STOCK_CACHE_PREFIX + id, seckillGoods.getStockCount());
+        return true;
     }
 }

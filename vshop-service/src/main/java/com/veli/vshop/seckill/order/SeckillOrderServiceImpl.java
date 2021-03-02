@@ -2,12 +2,12 @@ package com.veli.vshop.seckill.order;
 
 import com.veli.vshop.seckill.aop.lock.ServiceLock;
 import com.veli.vshop.seckill.aop.lock.ServiceRedisLock;
-import com.veli.vshop.seckill.aop.lock.ServiceZkLock;
 import com.veli.vshop.seckill.dao.entity.TbSeckillGoods;
 import com.veli.vshop.seckill.dao.entity.TbSeckillOrder;
 import com.veli.vshop.seckill.dao.mapper.TbSeckillGoodsMapper;
 import com.veli.vshop.seckill.dao.mapper.TbSeckillOrderMapper;
 import com.veli.vshop.seckill.exception.SeckillOrderException;
+import com.veli.vshop.seckill.redis.RedisService;
 import com.veli.vshop.seckill.response.RestResponseCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import static com.veli.vshop.seckill.domain.CommonConstants.*;
 
 /**
  * @author yangwei
@@ -28,6 +30,8 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
     private TbSeckillGoodsMapper seckillGoodsMapper;
     @Resource
     private TbSeckillOrderMapper seckillOrderMapper;
+    @Resource
+    private RedisService redisService;
 
     /**
      * 互斥锁，参数默认false:不公平锁
@@ -125,6 +129,47 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
                 .setMoney(seckillGoods.getCostPrice());
 
         return seckillOrderMapper.insertSelective(seckillOrder) >= 1;
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public boolean redisCacheKilled(Long id, String userId) {
+        // 优化一：从缓存中获取秒杀商品数据
+        TbSeckillGoods seckillGoods = redisService.getObjValue(SEC_KILL_GOODS_CACHE_PREFIX + id);
+        validateSeckillGoods(seckillGoods);
+        // 优化二：利用Redis的原子性操作扣减库存，不需要上锁
+        boolean result = reduceStock(id);
+        if (!result) {
+            throw new SeckillOrderException(RestResponseCode.SEC_GOODS_STOCK_FAIL, "扣减库存失败");
+        }
+        // 下单
+        TbSeckillOrder seckillOrder = new TbSeckillOrder()
+                .setSeckillId(id)
+                .setUserId(userId)
+                .setCreatedTime(System.currentTimeMillis())
+                .setStatus(0)
+                .setMoney(seckillGoods.getCostPrice());
+        // 3、异步实现（blockingQueue,disruptor,rocketMQ队列实现异步）
+        // 队列实现异步下单操作
+        return seckillOrderMapper.insertSelective(seckillOrder) >= 1;
+    }
+
+    private boolean reduceStock(Long id) {
+        Long result = redisService.incrInt(SEC_KILL_GOODS_STOCK_CACHE_PREFIX + id, -1);
+        if (result > 0) {
+            // TODO 发送消息
+            //
+            return true;
+        } else if (result == 0) {
+            //
+            // 记录标识，表示此商品已经售卖结束
+            redisService.setIntValue(SEC_KILL_GOODS_STOCK_END_CACHE_PREFIX + id, 1);
+            return true;
+        } else {
+            // 扣减库存失败
+            redisService.incrInt(SEC_KILL_GOODS_STOCK_CACHE_PREFIX + id, 1);
+            return false;
+        }
     }
 
     private boolean killOrder(TbSeckillGoods seckillGoods, Long id, String userId) {

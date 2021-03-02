@@ -6,6 +6,7 @@ import com.veli.vshop.seckill.order.SeckillGoodsService;
 import com.veli.vshop.seckill.response.RestResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.models.auth.In;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -37,5 +38,11 @@ public class SeckillGoodsController {
     @GetMapping("/goods/detail/{id}")
     public RestResponse<TbSeckillGoods> queryDetails(@PathVariable Integer id) {
         return RestResponse.success(seckillGoodsService.queryGoodsDetailsByCache(id));
+    }
+
+    @ApiOperation("刷新Redis缓存：秒杀商品")
+    @GetMapping("/goods/refresh/cache/{id}")
+    public RestResponse<Boolean> refreshCache(@PathVariable Integer id) {
+        return RestResponse.success(seckillGoodsService.refreshCache(id));
     }
 }
