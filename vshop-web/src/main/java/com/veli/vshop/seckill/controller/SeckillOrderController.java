@@ -82,4 +82,15 @@ public class SeckillOrderController {
         }
         return RestResponse.success(seckillOrderService.redisCacheKilled(id, baseUser.getGuid()));
     }
+
+    @ApiOperation("⑥ 使用MQ异步下单，实现库存控制和缓存优化")
+    @GetMapping("/order/mq/{id}/{token}")
+    public RestResponse<Boolean> mqKilled(@PathVariable Long id,
+                                          @PathVariable String token) {
+        BaseUser baseUser = userService.queryUserByToken(token);
+        if (baseUser == null) {
+            return RestResponse.error(RestResponseCode.TOKEN_OVERTIME);
+        }
+        return RestResponse.success(seckillOrderService.mqKilled(id, baseUser.getGuid()));
+    }
 }

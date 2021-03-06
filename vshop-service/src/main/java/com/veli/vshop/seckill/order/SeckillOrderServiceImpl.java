@@ -7,15 +7,18 @@ import com.veli.vshop.seckill.dao.entity.TbSeckillOrder;
 import com.veli.vshop.seckill.dao.mapper.TbSeckillGoodsMapper;
 import com.veli.vshop.seckill.dao.mapper.TbSeckillOrderMapper;
 import com.veli.vshop.seckill.exception.SeckillOrderException;
-import com.veli.vshop.seckill.mq.RocketmqProducer;
+import com.veli.vshop.seckill.mq.SimpleMQProducer;
+import com.veli.vshop.seckill.mq.TransactMQProducer;
 import com.veli.vshop.seckill.queue.jvm.SeckillQueue;
 import com.veli.vshop.seckill.redis.RedisService;
 import com.veli.vshop.seckill.response.RestResponseCode;
+import com.veli.vshop.seckill.util.TaskUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.concurrent.Future;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -34,8 +37,10 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
     private TbSeckillOrderMapper seckillOrderMapper;
     @Resource
     private RedisService redisService;
+//    @Resource
+//    private SimpleMQProducer producer;
     @Resource
-    private RocketmqProducer producer;
+    private TransactMQProducer transactMQProducer;
 
     /**
      * 互斥锁，参数默认false:不公平锁
@@ -82,6 +87,22 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
 //            lock.unlock();
 //        }
         return result;
+    }
+
+    @Override
+    public boolean ordering(Long id, String userId) {
+        // 1、从数据库查询商品数据，并进行校验
+        TbSeckillGoods seckillGoods = seckillGoodsMapper.selectByPrimaryKey(id);
+        validateSeckillGoods(seckillGoods);
+        // 2、下单
+        TbSeckillOrder seckillOrder = new TbSeckillOrder()
+                .setSeckillId(id)
+                .setUserId(userId)
+                .setCreatedTime(System.currentTimeMillis())
+                .setStatus(0)
+                .setMoney(seckillGoods.getCostPrice());
+
+        return seckillOrderMapper.insertSelective(seckillOrder) >= 1;
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -159,7 +180,27 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
         if (!produceRes) {
             throw new SeckillOrderException(RestResponseCode.SEC_GOODS_STOCK_FAIL);
         }
-//        return seckillOrderMapper.insertSelective(seckillOrder) >= 1;
+        // 设置事务状态
+        seckillGoods.setTransactionStatus(1).setStockCount(null);
+        // 更新事务状态
+        seckillGoodsMapper.updateByPrimaryKeySelective(seckillGoods);
+        return true;
+    }
+
+    @Override
+    public boolean mqKilled(Long id, String userId) {
+        Future<Object> future = TaskUtils.submit(() -> {
+            boolean result = transactMQProducer.sendTransactionMsg(id, userId);
+            if (!result) {
+                throw new SeckillOrderException();
+            }
+            return null;
+        });
+        try {
+            future.get();
+        } catch (Exception e) {
+            throw new SeckillOrderException(RestResponseCode.SEC_GOODS_STOCK_FAIL, "消息发送失败");
+        }
         return true;
     }
 
@@ -167,7 +208,7 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
         Long result = redisService.incrInt(SEC_KILL_GOODS_STOCK_CACHE_PREFIX + id, -1);
         if (result >= 0) {
             // 扣减库存成功发送消息
-            producer.sendSyncStockMsg(id);
+//            producer.sendSyncStockMsg(id);
             if (result == 0) {
                 // 记录标识，表示此商品已经售卖结束
                 redisService.setIntValue(SEC_KILL_GOODS_STOCK_END_CACHE_PREFIX + id, 1);

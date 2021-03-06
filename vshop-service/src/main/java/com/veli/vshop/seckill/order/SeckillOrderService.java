@@ -11,6 +11,10 @@ public interface SeckillOrderService {
      */
     boolean generalKilled(Long id, String userId);
     /**
+     * 下单（不进行库存扣减）
+     */
+    boolean ordering(Long id, String userId);
+    /**
      * 加锁方式的 普通秒杀
      */
     boolean generalKilledByLock(Long id, String userId);
@@ -30,4 +34,8 @@ public interface SeckillOrderService {
      * 利用Redis原子操作，实现库存控制和缓存优化
      */
     boolean redisCacheKilled(Long id, String userId);
+    /**
+     * 使用MQ异步下单，实现库存控制和缓存优化
+     */
+    boolean mqKilled(Long id, String userId);
 }

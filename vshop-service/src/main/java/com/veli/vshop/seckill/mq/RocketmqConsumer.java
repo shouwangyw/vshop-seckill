@@ -2,6 +2,8 @@ package com.veli.vshop.seckill.mq;
 
 import com.veli.vshop.seckill.config.RocketmqConfig;
 import com.veli.vshop.seckill.dao.mapper.TbSeckillGoodsMapper;
+import com.veli.vshop.seckill.domain.SeckillDto;
+import com.veli.vshop.seckill.util.JsonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
@@ -34,13 +36,15 @@ public class RocketmqConsumer {
             consumer.subscribe(rocketmqConfig.getTopic(), "*");
             // 如果是第一次启动，从队列头部开始消费；如果不是第一次启动，从上次消费的位置继续消费
             consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
+            consumer.setVipChannelEnabled(false);
             consumer.registerMessageListener((MessageListenerConcurrently) (messages, context) -> {
                 try {
                     for (MessageExt messageExt : messages) {
                         String message = new String(messageExt.getBody(), RemotingHelper.DEFAULT_CHARSET);
+                        SeckillDto seckillDto = JsonUtils.toObj(message, SeckillDto.class);
                         // 同步数据库的库存
-                        seckillGoodsMapper.updateByPrimaryKeyWithLock(Long.valueOf(message));
-                        log.info("[Consumer] msgID: {}, msgBody: {}", messageExt.getMsgId(), message);
+                        seckillGoodsMapper.updateByPrimaryKeyWithLock(seckillDto.getSeckillId());
+                        log.info("[Consumer] msgID: {}, msgBody: {}", messageExt.getMsgId(), JsonUtils.toStr(seckillDto));
                     }
                 } catch (Exception e) {
                     // 如果出现异常，必须告知消息进行重试
