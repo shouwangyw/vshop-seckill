@@ -1,4 +1,4 @@
-package com.veli.vshop.seckill.aop.lock;
+package com.veli.vshop.seckill.annotation;
 
 import java.lang.annotation.*;
 

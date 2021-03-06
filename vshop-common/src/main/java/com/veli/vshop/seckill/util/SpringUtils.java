@@ -5,6 +5,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import java.lang.annotation.Annotation;
+import java.util.Map;
+
 /**
  * @author yangwei
  * @date 2021-03-01 07:34
@@ -43,5 +46,9 @@ public class SpringUtils implements ApplicationContextAware {
      */
     public static <T> T getBean(String name, Class<T> clazz) {
         return getApplicationContext().getBean(name, clazz);
+    }
+
+    public static Map<String, Object> getBeansWithAnnotation(Class<? extends Annotation> clazz) {
+        return getApplicationContext().getBeansWithAnnotation(clazz);
     }
 }

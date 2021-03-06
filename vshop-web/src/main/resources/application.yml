@@ -55,6 +55,12 @@ redisson:
 # zookeeper
 zookeeper:
   address: 192.168.254.120:2181
+# rocketmq
+rocketmq:
+  namesrv-addr: 192.168.254.120:9876
+  group-name: seckill_goods_group
+  topic: seckill_goods_sync_topic
+  retry-times: 3
 logging:
   level:
     root: info

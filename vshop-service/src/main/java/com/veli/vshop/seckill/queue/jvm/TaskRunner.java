@@ -30,6 +30,8 @@ public class TaskRunner implements ApplicationRunner {
                 try {
                     TbSeckillOrder order = SeckillQueue.getInstance().consume();
                     if (order != null) {
+                        // 从队列中获取订单，执行下单操作
+                        log.debug("execute order...");
                         seckillOrderService.generalKilled(order.getSeckillId(), order.getUserId());
                     }
                 } catch (Exception e) {

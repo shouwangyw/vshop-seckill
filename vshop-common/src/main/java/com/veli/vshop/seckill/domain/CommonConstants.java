@@ -18,4 +18,5 @@ public interface CommonConstants{
     String SEC_KILL_GOODS_STOCK_CACHE_PREFIX = "seckill_goods_stock_";
     // 秒杀商品售罄
     String SEC_KILL_GOODS_STOCK_END_CACHE_PREFIX = "seckill_goods_stock_end_";
+
 }

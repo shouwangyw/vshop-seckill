@@ -1,4 +1,4 @@
-package com.veli.vshop.seckill.aop.lock;
+package com.veli.vshop.seckill.annotation.aop;
 
 import com.veli.vshop.seckill.exception.CustomException;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +29,7 @@ public class LockAspect {
     /**
      * Service切入点
      */
-    @Pointcut("@annotation(com.veli.vshop.seckill.aop.lock.ServiceLock)")
+    @Pointcut("@annotation(com.veli.vshop.seckill.annotation.ServiceLock)")
     public void lockAspect() {
 
     }

@@ -1,4 +1,4 @@
-package com.veli.vshop.seckill.aop.lock;
+package com.veli.vshop.seckill.annotation.aop;
 
 import com.veli.vshop.seckill.exception.CustomException;
 import com.veli.vshop.seckill.util.ZkLockUtils;
@@ -25,7 +25,7 @@ public class LockZkAspect {
     /**
      * Service切入点
      */
-    @Pointcut("@annotation(com.veli.vshop.seckill.aop.lock.ServiceZkLock)")
+    @Pointcut("@annotation(com.veli.vshop.seckill.annotation.ServiceZkLock)")
     public void lockAspect() {
 
     }

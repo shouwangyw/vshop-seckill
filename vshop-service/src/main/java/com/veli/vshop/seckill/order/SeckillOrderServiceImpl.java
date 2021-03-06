@@ -1,12 +1,14 @@
 package com.veli.vshop.seckill.order;
 
-import com.veli.vshop.seckill.aop.lock.ServiceLock;
-import com.veli.vshop.seckill.aop.lock.ServiceRedisLock;
+import com.veli.vshop.seckill.annotation.ServiceLock;
+import com.veli.vshop.seckill.annotation.ServiceRedisLock;
 import com.veli.vshop.seckill.dao.entity.TbSeckillGoods;
 import com.veli.vshop.seckill.dao.entity.TbSeckillOrder;
 import com.veli.vshop.seckill.dao.mapper.TbSeckillGoodsMapper;
 import com.veli.vshop.seckill.dao.mapper.TbSeckillOrderMapper;
 import com.veli.vshop.seckill.exception.SeckillOrderException;
+import com.veli.vshop.seckill.mq.RocketmqProducer;
+import com.veli.vshop.seckill.queue.jvm.SeckillQueue;
 import com.veli.vshop.seckill.redis.RedisService;
 import com.veli.vshop.seckill.response.RestResponseCode;
 import lombok.extern.slf4j.Slf4j;
@@ -32,6 +34,8 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
     private TbSeckillOrderMapper seckillOrderMapper;
     @Resource
     private RedisService redisService;
+    @Resource
+    private RocketmqProducer producer;
 
     /**
      * 互斥锁，参数默认false:不公平锁
@@ -149,21 +153,25 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
                 .setCreatedTime(System.currentTimeMillis())
                 .setStatus(0)
                 .setMoney(seckillGoods.getCostPrice());
-        // 3、异步实现（blockingQueue,disruptor,rocketMQ队列实现异步）
+        // 优化三：异步实现（blockingQueue,disruptor,rocketMQ队列实现异步）
         // 队列实现异步下单操作
-        return seckillOrderMapper.insertSelective(seckillOrder) >= 1;
+        boolean produceRes = SeckillQueue.getInstance().produce(seckillOrder);
+        if (!produceRes) {
+            throw new SeckillOrderException(RestResponseCode.SEC_GOODS_STOCK_FAIL);
+        }
+//        return seckillOrderMapper.insertSelective(seckillOrder) >= 1;
+        return true;
     }
 
     private boolean reduceStock(Long id) {
         Long result = redisService.incrInt(SEC_KILL_GOODS_STOCK_CACHE_PREFIX + id, -1);
-        if (result > 0) {
-            // TODO 发送消息
-            //
-            return true;
-        } else if (result == 0) {
-            //
-            // 记录标识，表示此商品已经售卖结束
-            redisService.setIntValue(SEC_KILL_GOODS_STOCK_END_CACHE_PREFIX + id, 1);
+        if (result >= 0) {
+            // 扣减库存成功发送消息
+            producer.sendSyncStockMsg(id);
+            if (result == 0) {
+                // 记录标识，表示此商品已经售卖结束
+                redisService.setIntValue(SEC_KILL_GOODS_STOCK_END_CACHE_PREFIX + id, 1);
+            }
             return true;
         } else {
             // 扣减库存失败

@@ -69,6 +69,9 @@ public class TbSeckillGoods {
     @ApiModelProperty("介绍")
     private String introduction;
 
+    @ApiModelProperty("事务状态: 0 初始, 1 成功, -1 回滚")
+    private Integer transactionStatus;
+
     @ApiModelProperty("版本")
     private Integer version;
 }

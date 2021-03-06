@@ -1,4 +1,4 @@
-package com.veli.vshop.seckill.aop.lock;
+package com.veli.vshop.seckill.annotation.aop;
 
 import com.veli.vshop.seckill.exception.CustomException;
 import com.veli.vshop.seckill.util.RedissonLockUtils;
@@ -35,7 +35,7 @@ public class LockRedisAspect {
     /**
      * Service切入点
      */
-    @Pointcut("@annotation(com.veli.vshop.seckill.aop.lock.ServiceRedisLock)")
+    @Pointcut("@annotation(com.veli.vshop.seckill.annotation.ServiceRedisLock)")
     public void lockAspect() {
 
     }

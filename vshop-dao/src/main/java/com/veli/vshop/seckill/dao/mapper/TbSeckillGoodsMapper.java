@@ -24,6 +24,8 @@ public interface TbSeckillGoodsMapper extends Mapper<com.veli.vshop.seckill.dao.
             @Result(column = "stock_count", property = "stockCount"),
             @Result(column = "goods_desc", property = "goodsDesc"),
             @Result(column = "introduction", property = "introduction"),
+            @Result(column = "transaction_status", property = "transactionStatus"),
+            @Result(column = "version", property = "version"),
     })
     TbSeckillGoods selectByPrimaryKeyWithLock(@Param("id") Long id);
 
