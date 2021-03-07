@@ -42,7 +42,52 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
+      <!-- 指定jdk -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>com.spotify</groupId>
+        <artifactId>docker-maven-plugin</artifactId>
+        <version>0.4.13</version>
+        <configuration>
+          <!--dockerfile 指令：变成插件配置-->
+          <!--用于指定镜像名称-->
+          <imageName>hub.veli.com/vshop/${project.artifactId}:${project.version}</imageName>
+          <!--用于指定基础镜像，相当于Dockerfile中的FROM指令-->
+          <baseImage>hub.veli.com/library/jdk1.8.0:241</baseImage>
+          <!--指定工作目录-->
+          <!--<workdir>/</workdir>-->
+          <maintainer>admin</maintainer>
+          <cmd>["java","-version"]</cmd>
+          <!--相当于Dockerfile的ENTRYPOINT指令-->
+          <!--dockerfile : entryPoint-->
+          <entryPoint>["java","-jar","/${project.build.finalName}.jar"]</entryPoint>
+          <!--指定harbor镜像仓库地址,指定：镜像仓库用户名，密码-->
+          <serverId>my-docker-registry</serverId>
+          <!--是否跳过docker build-->
+          <!--<skipDockerBuild>true</skipDockerBuild>-->
+          <resources>
+            <resource>
+              <!--workdir ADD xx.jar / -->
+              <!--workdir 工作目录-->
+              <targetPath>/</targetPath>
+              <!--用于指定需要复制的根目录，${project.build.directory}表示target目录-->
+              <directory>${project.build.directory}</directory>
+              <!--用于指定需要复制的文件。${project.build.finalName}.jar指的是打包后的jar包文件-->
+              <include>${project.build.finalName}.jar</include>
+            </resource>
+          </resources>
+          <!--使用本地镜像仓库使用-->
+          <!-- <dockerHost>http://192.168.254.116:1234</dockerHost>-->
+        </configuration>
+      </plugin>
     </plugins>
-    <defaultGoal>compile</defaultGoal>
   </build>
 </project>
