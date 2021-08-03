@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: jshop-server
+  name: jshop-server
+  namespace: edu
+spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: jshop-server
+      release: jshopserver
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: jshop-server
+        release: jshopserver
+    spec:
+      containers:
+          - env:
+            - name: K
+              value: V
+            image: registry.cn-beijing.aliyuncs.com/kkb2/jshop:v7
+            imagePullPolicy: Always
+            livenessProbe:
+              failureThreshold: 3
+              initialDelaySeconds: 120
+              periodSeconds: 10
+              successThreshold: 1
+              tcpSocket:
+                port: 9000
+              timeoutSeconds: 5
+            name: admin-server
+            readinessProbe:
+              failureThreshold: 3
+              initialDelaySeconds: 120
+              periodSeconds: 10
+              successThreshold: 1
+              tcpSocket:
+                port: 9000
+              timeoutSeconds: 5
+            resources:
+              limits:
+                cpu: "1"   # 限制pod只能使用1个cpu
+                memory: 2Gi  # 限制pod只能使用2g内存
+              requests:
+                cpu: 500m  # 初始化的时候，使用50% CPU
+                memory: 1Gi # 初始化，使用一半的内存大小
+            terminationMessagePath: /dev/termination-log
+            terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      imagePullSecrets:
+        - name: kkb100
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: jshop-server
+  name: jshopserver
+  namespace: edu
+spec:
+  ports:
+    - name: jshop-server
+      port: 80
+      protocol: TCP
+      targetPort: 9000
+  selector:
+    app: jshop-server
+  type: ClusterIP

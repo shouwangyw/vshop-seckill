@@ -27,7 +27,7 @@ public class SeckillGoodsServiceImpl implements SeckillGoodsService {
     @Resource
     private TbSeckillGoodsMapper seckillGoodsMapper;
     @Resource
-    private Cache<String, Object> guavaCacche;
+    private Cache<String, Object> guavaCache;
     @Resource
     private RedisService redisService;
 
@@ -57,7 +57,7 @@ public class SeckillGoodsServiceImpl implements SeckillGoodsService {
     public TbSeckillGoods queryGoodsDetailsByCache(Integer id) {
         String cacheKey = SEC_KILL_GOODS_CACHE_PREFIX + id;
         // 1、先从JVM堆内存中读取数据，使用 guava 缓存
-        TbSeckillGoods seckillGoods = (TbSeckillGoods) guavaCacche.getIfPresent(cacheKey);
+        TbSeckillGoods seckillGoods = (TbSeckillGoods) guavaCache.getIfPresent(cacheKey);
         if (seckillGoods != null) {
             return seckillGoods;
         }
@@ -65,7 +65,7 @@ public class SeckillGoodsServiceImpl implements SeckillGoodsService {
         seckillGoods = redisService.getObjValue(cacheKey);
         if (seckillGoods != null) {
             // 添加进guava缓存
-            guavaCacche.put(cacheKey, seckillGoods);
+            guavaCache.put(cacheKey, seckillGoods);
             return seckillGoods;
         }
         // 3、如果分布式缓存(redis)中还没有，则从数据库查询
