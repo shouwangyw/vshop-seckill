@@ -1,3 +1,5 @@
+[TOC]
+
 # 环境准备
 
 ## 数据库
@@ -10,7 +12,7 @@
 
 - github地址：[https://github.com/shouwangyw/vshop-seckill](https://github.com/shouwangyw/vshop-seckill)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021021322243456.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021021322243456.png)
 
 ### 服务打包
 
@@ -46,15 +48,15 @@ nohup java -jar seckill-web.jar --spring.config.addition-location=application.ym
 tail -f seckill-web.log
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215150426962.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215150426962.png)
 
 - 测试访问下 swagger 文档地址：[http://192.168.254.128:9000/doc.html](http://192.168.254.128:9000/doc.html)，首先登陆获取token，然后测一下`获取商品详情信息`的接口：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215151022568.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215151022568.png)
 
 - 接口是OK的！
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021021515105099.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021021515105099.png)
 
 # 压力测试与性能分析
 
@@ -81,7 +83,7 @@ tail -f seckill-web.log
 
 - jmeter镜像下载地址：[https://jmeter.apache.org/](https://jmeter.apache.org/)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210130225228458.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210130225228458.png)
 
 ```bash
 wget https://mirrors.tuna.tsinghua.edu.cn/apache//jmeter/binaries/apache-jmeter-5.4.1.tgz
@@ -96,7 +98,7 @@ export PATH=$JAVA_HOME/bin:$JMETER_HOME/bin:$PATH
 
 - 下载地址：[http://jmeter-plugins.org/downloads/all/](http://jmeter-plugins.org/downloads/all/)，官网上下载 plugins-manager.jar 直接在线下载，然后执行在线下载即可。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210130225537370.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210130225537370.png)
 
 - **注意：下载插件在英文模式下下载，如果在中文模式下下载，貌似不好使**
 
@@ -112,13 +114,13 @@ export PATH=$JAVA_HOME/bin:$JMETER_HOME/bin:$PATH
 
 - 在线下载方法如下图所示：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210130230308492.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210130230308492.png)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021013023063597.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021013023063597.png)
 
 - 还可以选择jmter语言：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215153136400.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215153136400.png)
 
 - 修改jmeter默认语言：
 
@@ -134,15 +136,15 @@ vim jmeter.properties
 
 - 新建测试计划：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215154331882.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215154331882.png)
 
 - 添加取样器：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215195147947.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215195147947.png)
 
 - 继续添加监听器：察看结果树、聚合报告、TPS、RT等
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215195517731.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215195517731.png)
 
 ### 开始测试
 
@@ -150,11 +152,11 @@ vim jmeter.properties
 
 #### 并发测试
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215195818261.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215195818261.png)
 
 #### TPS性能曲线图
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215212931182.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215212931182.png)
 
 - 根据 TPS 性能曲线图：TPS 在 2400 左右，目前该接口只是做了一个简单的主键查询。
 
@@ -166,7 +168,7 @@ vim jmeter.properties
 
 - RT：一个请求从发送到响应耗时。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215213021789.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215213021789.png)
 
 - 可以看到，大部分请求都在 1、2 秒左右返回，响应时间并不是很理想。主要是因为服务部署在本地 VMware 虚拟机，测试机也都是在本地。
 
@@ -186,14 +188,18 @@ vim jmeter.properties
 
 > 系统出现问题分类：
 
-- 系统异常：CPU占用率高、磁盘满了、磁盘IO频繁、网络流量异常等；排查指令：top、free、dstat、pstack、vmstat、strace 获取异常信息，排查系统异常情况。
-- 业务异常：流量太多系统扛不住、耗时长、线程死锁、多线程并发问题、频繁full gc、oom等；排查指令：top、jstack、pstack、strace、日志等。
+- 系统异常：CPU占用率高、磁盘满了、磁盘IO频繁、网络流量异常等；
+    - 排查指令：top、free、dstat、pstack、vmstat、strace 获取异常信息，排查系统异常情况。
+
+- 业务异常：流量太多系统扛不住、耗时长、线程死锁、多线程并发问题、频繁full gc、oom等；
+    - 排查指令：top、jstack、pstack、strace、日志等。
+
 
 ### CPU
 
 - top 指令监控 CPU 使用情况，根据 CPU 使用情况分析系统整体运行情况：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215202333791.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215202333791.png)
 
 - 关注指标：load average 代表系统的繁忙程度，三个参数分别是 1 分钟、5 分钟、15 分钟 CPU 的平均负载。
 - 单核CPU：
@@ -217,7 +223,7 @@ vim jmeter.properties
 
 - df 指令查看磁盘使用情况，有时候服务出现问题，可能就是磁盘不够了。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215203348331.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215203348331.png)
 
 ### 网络
 
@@ -229,9 +235,9 @@ yum install dstat
 
 - -c 查看cpu情况；-d 磁盘读写；-n 网络状态；-l 显示系统负载…
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021021520360143.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021021520360143.png)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215203808390.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215203808390.png)
 
 # 服务端调优
 
@@ -244,7 +250,7 @@ yum install dstat
 
 - Tomcat 服务器：是我们现在使用的内置服务器，默认的线程数？最大连接数？
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215204852837.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215204852837.png)
 
 ### 问题2
 
@@ -253,13 +259,13 @@ yum install dstat
 
 - Tomcat参数原理分析：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215205637656.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215205637656.png)
 
 - 优化配置：最大线程数提升4倍
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215205847673.png)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215213616221.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215213616221.png)
 
 ### 问题3
 
@@ -268,22 +274,22 @@ yum install dstat
 
 - 修改业务代码，模拟耗时操作，然后重新打包部署
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215214141815.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215214141815.png)
 
 - tomcat配置没有做优化前的TPS：稳定在 200 左右
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215214938333.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215214938333.png)
 
 - tomcat配置优化后的TPS：可以发现TPS提升4倍，变成了800个TPS
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215215228431.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215215228431.png)
 
 ## KeepAlive
 
 - 客户端和服务器连接的时候，为了防止频繁建立连接，释放连接，浪费资源，这样会消耗资源造成性能下降。
 - Jmeter使用长连接进行测试：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215215623330.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210215215623330.png)
 
 - 问题：keep-alive 连接数是否是越多越好呢？
 - 答案：keep-alive 连接本身消耗大量的资源，如果不能及时释放，系统TPS就上不去，因此 keep-alive 连接数也必须要设置一个合理的连接数。
@@ -373,21 +379,21 @@ public class WebServerConfig implements WebServerFactoryCustomizer<ConfigurableW
 - 该算法分为”标记“和”清除“两个阶段：首先标记所有需要回收的对象，在标记完成后统一回收所有垃圾。
 - 缺点：效率不高，标记和清除两个过程的效率都不高；产生碎片，碎片太多会导致提前GC。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216140733555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216140733555.png)
 
 ##### 复制
 
 - 该算法将可用内存按容量划分为大小相等的两块，每次只是用其中的一块，当这一块的内存用完了，就将还存活着的对象复制到另外一块上面，然后再把已使用过的内存空间一次清除掉（Young区就是使用的这种算法）。
 - 优缺点：实现简单，运行高效，但是空间利用率低。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021021614082314.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021021614082314.png)
 
 ##### 标记-整理
 
 - 标记过程仍然与”标记-清除“算法一样，但后续步骤不是直接对可回收对象进行清理，而是让所有存活的对象都向一端移动，然后直接清理掉端到边界以外的内存。
 - 优缺点：没有了内存碎片，但是整理内存比较耗时。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216140902891.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216140902891.png)
 
 ##### 分代收集
 
@@ -398,7 +404,7 @@ public class WebServerConfig implements WebServerFactoryCustomizer<ConfigurableW
 
 - Java提供很多的垃圾回收器：10种垃圾回收器。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216141223647.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216141223647.png)
 
 - **串行回收器**：Serial、Serial old
 - **并行回收器**：ParNew、Parallel Scavenge、Parallel old
@@ -428,7 +434,7 @@ public class WebServerConfig implements WebServerFactoryCustomizer<ConfigurableW
 
 - Serial 是年轻代的垃圾回收器，单线程的垃圾回收器；Serial Old 是老年代的垃圾回收器，也是一个单线程的垃圾回收器，适合单核心的 CPU。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216143018869.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216143018869.png)
 
 - 注意特点：
   - STW：当进行 GC 的时候，整个业务线程都会被停止，如果 STW 时间过长，或者 STW 发生次数过多，都会影响程序的性能。
@@ -444,7 +450,7 @@ public class WebServerConfig implements WebServerFactoryCustomizer<ConfigurableW
 
 - PS + PO 回收垃圾的时候，采用的多线程模式回收垃圾。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216143450516.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216143450516.png)
 
 - 注意特点：
   - STW：当进行 GC 的时候，整个业务线程都会被停止，如果 STW 时间过长，或者 STW 发生次数过多，都会影响程序的性能。
@@ -454,7 +460,7 @@ public class WebServerConfig implements WebServerFactoryCustomizer<ConfigurableW
 
 - ParNew 是并行垃圾回收器，年轻代的垃圾回收器；CMS 是并发垃圾回收器，回收老年代的垃圾。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216144249225.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216144249225.png)
 
 - CMS 是响应时间优先的垃圾回收器，充分考虑了 STW 时间的问题，减少 STW 的时间，延长业务执行时间。
 - 注意：任何的垃圾回收器都无法避免 STW，因此 JVM 调优实际上就是调整 STW 的时间。
@@ -466,7 +472,7 @@ public class WebServerConfig implements WebServerFactoryCustomizer<ConfigurableW
 
 ### 内存分代模型
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216145107436.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216145107436.png)
 
 - 通过内存分代模型结构：大多数对象都会在年轻代被回收掉（90%+），很多对象都在15次的垃圾回收中被回收掉了，只有超过15次还没被回收掉的才会进入到老年代区域。
 - 垃圾回收触发的时机：
@@ -475,7 +481,7 @@ public class WebServerConfig implements WebServerFactoryCustomizer<ConfigurableW
 
 > 一个新对象被创建了，但是这个对象是一个大对象（查询全表），eden区域已经放不下了，此时会发生什么？
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216145843313.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216145843313.png#pic_center)
 
 ### JVM实战调优
 
@@ -497,7 +503,7 @@ nohup java -Xmx2000m -Xms2000m -Xmn1g -Xss256k -jar seckill-web.jar --spring.con
 
 - 再次进行压力测试：查看在此内存设置模式下性能情况。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216151603546.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216151603546.png)
 
 - 根据压力测试结果，发现JVM参数设置，和之前没有设置吞吐能力没有太大的变化，因为测试样本不足以造成 GC、Full GC 时间上的差异。
 
@@ -527,15 +533,15 @@ nohup java -Xmx2000m -Xms2000m -Xmn1g -Xss256k -XX:+PrintGCDetails -XX:+PrintGCT
 
 - 可以使用 [GCeasy](https://gceasy.io/)进行 GC日志分析：导入gc.log 进行在线分析即可。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216155326462.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216155326462.png)
 
 ##### JVM内存使用情况
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216155744520.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216155744520.png)
 
 ##### 关键指标
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216160105294.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216160105294.png)
 
 - 总结：可以发现业务线程执行时间占比达到99%+，说明 GC 时间在整个业务执行期间所占用的时间非常少，几乎不会影响程序性能；导致业务线程执行时间占比高的原因是： 
   - 程序样本数不够；
@@ -546,11 +552,11 @@ nohup java -Xmx2000m -Xms2000m -Xmn1g -Xss256k -XX:+PrintGCDetails -XX:+PrintGCT
 
 - 在一开始就发生了FullGC：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216160732693.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216160732693.png)
 
 - GC 详细数据分析：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216160821891.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216160821891.png)
 
 #### Full GC频繁发生
 
@@ -567,11 +573,11 @@ nohup java -Xmx2000m -Xms2000m -Xmn1g -Xss256k -XX:MetaspaceSize=256m -XX:+Print
 
 - 调整参数后，重启项目，并进行压力测试，重新生成 GC 日志，并进行分析
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216163139890.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216163139890.png)
 
 - 经过参数调优后，发现 Full GC 已经没有发生了。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216163218541.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216163218541.png)
 
 #### Young & Old 比例
 
@@ -586,7 +592,7 @@ nohup java -Xmx2000m -Xms2000m -Xmn750m -Xss256k -XX:MetaspaceSize=256m -XX:+Pri
 
 - 调整参数后，重启项目，并进行压力测试，重新生成 GC 日志，并进行分析
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216182541961.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216182541961.png)
 
 - Young GC 增多了几次，但是在 JVM调优的原则中：要求尽量防止 Full GC 的发生，因此可以把 Full GC 设置的稍微大一些，意味着 Old 区域装载对象很长时间才能装满（或者永远都装不满），发生 Full GC 概率就非常小。
 
@@ -602,7 +608,7 @@ nohup java -Xmx2000m -Xms2000m -Xmn750m -Xss256k -XX:MetaspaceSize=256m -XX:Surv
 
 - 调整参数后，重启项目，并进行压力测试，重新生成 GC 日志，并进行分析
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216183914543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216183914543.png)
 
 - 发现 Young GC 次数和时间有所减少和降低。
 
@@ -641,7 +647,7 @@ nohup java -Xmx2000m -Xms2000m -Xmn750m -Xss256k -XX:MetaspaceSize=256m -XX:Surv
 
 - 调整参数后，重启项目，并进行压力测试，重新生成 GC 日志，并进行分析
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216191040444.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216191040444.png)
 
 - 经过测试，发现 G1 GC 次数减少了，但是 GC 总时长增加很多；时间增加，意味着服务性能就没有提升上去。
 
@@ -674,25 +680,25 @@ nohup java -Xmx2000m -Xms2000m -Xmn750m -Xss256k -XX:MetaspaceSize=256m -XX:Surv
 
 #### 连接池配置
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216195228325.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216195228325.png)
 
 #### 定制Jmeter压力测试
 
 - 添加MySQL驱动，添加测试用例：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/202102161929027.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/202102161929027.png)
 
 - 添加JDBC连接配置：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216193304674.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216193304674.png)
 
 - 添加取样器-JDBC请求：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216193856459.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216193856459.png)
 
 - 继续添加监听器：察看结果树、TPS、RT、聚合报告，先测试一个请求，测试OK。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216193937209.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210216193937209.png)
 
 - 接下来设置线程数，进行并发测试20W样本：调整最大连接数找到最合理的连接数量
 
@@ -722,7 +728,7 @@ set NEW=-XX:NewSize=128m -XX:MaxNewSize=512m
 
 - 还有一点要注意：不要直接点击工具栏的开始按钮，因为这个会把所有的测试用例跑起来，可能就会导致Jmeter OOM。测试某一个case，可以右键该用例启动即可。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217134515216.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217134515216.png)
 
 ### 连接属性
 
@@ -739,32 +745,32 @@ jdbc:mysql://127.0.0.1:3306/vshop?useUnicode=true&characterEncoding=utf8&autoRec
 
 ### 单体架构
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217144433683.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217144433683.png#pic_center)
 
 - 秒杀系统，mysql 会抢占同一个服务器 CPU 资源、内存资源；一旦 CPU 资源、内存资源出现满负荷状态，就会影响服务性能。
 
 ### 分离部署
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217144702221.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217144702221.png#pic_center)
 
 - 通过分离部署后，发现性能提升非常不明显，TPS还是800，因为无论是在单机，还是在分布式情况下，机器性能都不是满负荷运作的情况。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217144541989.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217144541989.png)
 
 ### 分布式部署
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217145425345.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217145425345.png#pic_center)
 
 - 从上往下看：openresty 是否会存在性能瓶颈？目前来看性能瓶颈不在 openresty，因为openresty(nginx) 底层使用 C 语言开发的，吞吐能力 5W TPS。
 - 性能瓶颈一定出现在项目，数据库这个位置。
 - 项目优化：扩容、缓存；数据库优化：扩容、数据库其他优化。
 - 配置nginx：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217150347917.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217150347917.png)
 
 - 此时此刻对这个架构进行TPS 预测： TPS = 1600。出现一些抖动，可能原因是所有应用都是在本地一台机器上完成，服务部署在本地虚拟机中。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217154227174.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217154227174.png)
 
 ## 多级缓存
 
@@ -779,7 +785,7 @@ jdbc:mysql://127.0.0.1:3306/vshop?useUnicode=true&characterEncoding=utf8&autoRec
 
 ### 缓存架构
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217160152887.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210217160152887.png#pic_center)
 
 - 本系统中要实现缓存有：**堆内存缓存、Redis分布式缓存、OpenResty内存字典(lua)、lua+redis**
 
@@ -852,11 +858,11 @@ public TbSeckillGoods queryGoodsDetailsByCache(Integer id) {
 
 - 这里实现的两级缓存（堆内存缓存，redis缓存）： 对于系统来说性能提升情况如何呢？
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221164626475.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221164626475.png)
 
 - 根据压力测试结果显示： TPS吞吐能力提升效果相当显著； 没有缓存：TPS = 800 , 加缓存：TPS = 8000+ 
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221164837543.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210221164837543.png)
 
 - RT 响应时间： 400ms左右，基本上满足接口性能需求。
 
@@ -947,15 +953,15 @@ server {
 - 注意：这里我们的OpenResty地址和后端需要访问的地址是不同的，因此，利用 proxy_pass 做了一层转发。
 - 利用 curl 测试一下是否可以正常访问：可以看到是没有问题的！
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210223073714592.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210223073714592.png)
 
 - 下面做下压测：修改下HTTP请求
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210223073917456.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210223073917456.png)
 
 - 使用80W个样本测试：TPS能达到2W，响应时间，RT响应时间也是非常之快速。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210223075200151.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210223075200151.png)
 
 ### Lua + Redis
 
@@ -1038,7 +1044,7 @@ end
 
 - 超卖产生的原因是什么？
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227093435561.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227093435561.png#pic_center)
 
 - 如何避免超卖现象的发生呢？请提出你的解决方案。
 - 回答：1、对共享资源(库存)加锁；2、Redis原子操作特性；3、队列(利用队列的单线程特性)
@@ -1047,7 +1053,7 @@ end
 
 - 对象共享资源库存加锁，让共享资源被多个线程互斥访问。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227093949555.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227093949555.png#pic_center)
 
 - 加锁目的：防止多个线程对共享资源的并发修改。一旦加锁，多个线程就进行排队执行，因此在高并发模式，这样的操作是一个灾难。明确一下：任何的加锁动作，都会导致性能急剧下降。
 
@@ -1160,15 +1166,15 @@ public class SeckillOrderServiceImpl implements SeckillOrderService {
 
 - 项目启动，然后访问 swagger 文档，登录并调用普通下单接口测试一下：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227133018132.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227133018132.png)
 
 - 下面我们使用 Jmeter 并发测试一下，1000个线程秒杀1000个库存商品，看下是否会出现超卖现象
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227135433742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227135433742.png)
 
 - 1000个线程秒杀成功，但是库存还有982，出现超卖了
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227140844937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227140844937.png)
 
 #### 单机锁Lock
 
@@ -1199,7 +1205,7 @@ public boolean generalKilled(Long id, String userId) {
 - 原因是**锁和事务冲突**，导致此时这个锁根本不起作用。
 - 下面分析：事务何时提交的？
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021022715004414.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021022715004414.png#pic_center)
 
 - 针对于以上问题（锁事务冲突的问题），你的解决方案是什么？
 - 解决方案： 锁上移 （锁包住事务，表现层加 AOP 锁（√））
@@ -1225,7 +1231,7 @@ public boolean generalKilled(Long id, String userId) {
 
 #### AOP锁实现
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227150957505.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227150957505.png#pic_center)
 
 - 定义一个加锁的注解：
 
@@ -1298,7 +1304,7 @@ public class LockAspect {
 
 - Lock锁只能在单机环境下起作用：只能在单个 JVM 进程中起作用，属于进程级别的锁，只对当前 JVM 进程起作用，而对于其他节点中 JVM 进程，这个锁无法控制库存的。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227153554982.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227153554982.png)
 
 - 上图所示，JVM 进程中一个线程，和另一个 JVM 进程中的线程不是互斥访问的关系，因此就会导致系统A、系统B出现数据脏读的线程，出现并发修改。
 - AOP锁颗粒度比较粗，对系统的性能影响是非常大的。
@@ -1307,7 +1313,7 @@ public class LockAspect {
 
 - 要实现进程级别的锁，实现共享资源的互斥访问，必须使用第三方的锁（第三方的加锁的东西：Redis、zookeeper、etcd）。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021022715372472.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021022715372472.png)
 
 #### 分布式事务与分布式锁区别是什么？
 
@@ -1324,7 +1330,7 @@ public class LockAspect {
 
 **悲观锁（for update） 加锁实现方式**
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227161751842.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210227161751842.png)
 
 - 以上查询库存的操作，加上for update，表示所有的线程执行此方法的时候，都是互斥的访问关系。
 - 经过测试： 在分布式集群模式下，通过 openresty 分发请求实现测试，发现库存是可以实现控制的，说明使用的悲观锁是完全 OK 的。
@@ -1409,7 +1415,7 @@ public class LockRedisAspect {
 }
 ```
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210228202539374.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210228202539374.png)
 
 #### 小结
 
@@ -1579,7 +1585,7 @@ public class TaskRunner implements ApplicationRunner {
 
 - 异步实现下单：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210302212818734.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210302212818734.png)
 
 - 再次进行压力测试，可以发现 TPS 又有了显著提升。
 
@@ -1652,26 +1658,26 @@ consumer.registerMessageListener((MessageListenerConcurrently) (messages, contex
 
 #### 本地事务执行之前发送消息
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/2021030616373524.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/2021030616373524.png)
 
 - 发送消息与本地事务本身就不是一个原子操作，做不到要么都成功，要么都失败。
 - 存在的问题：发送消息成功了，但是本地事务失败了，导致本地回滚。
 
 #### 本地事务执行之后发送
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210306163745242.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210306163745242.png)
 
 - 存在的问题：本地事务执行成功了，发送消息失败了。
 
 #### 事务消息(半消息机制)
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210306163759762.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210306163759762.png)
 
 - 利用RocketMQ事务消息，解决数据最终消息一致性；为了性能提升，必须采用这样的方案。
 
 ## 事务消息
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20201024151515724.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20201024151515724.png#pic_center)
 
 > 需要解决的问题：
 
@@ -1922,7 +1928,7 @@ public boolean mqKilled(Long id, String userId) {
 - 开发+运维： 一种文化系统，旨在建立一套流水线生产模式，提高代码生产效率；从开发，测试，发布能够更加快速，高效；DevOps旨在构建一套能够快速迭代的项目开发流程（架构），使得项目的发布可以更可靠的发生；
 - 软件开发交付的自动化实现（利用一些工具），实现CI/CD。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210306203546937.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210306203546937.png)
 
 ### 我们能做什么？
 
@@ -1943,7 +1949,7 @@ public boolean mqKilled(Long id, String userId) {
 
 - 互联网软件的开发和发布，已经形成了一套标准流程，假如把开发工作流程分为以下几个阶段：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210304194007172.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210304194007172.png)
 
 - 正如你在上图中看到，[持续集成(Continuous Integration)]、[持续交付(Continuous Delivery)]和[持续部署(Continuous Deployment)]有着不同的软件自动化交付周期。
 - 可以参考我之前的文章 [Jenkins持续集成&部署](https://blog.csdn.net/yangwei234/article/details/114376069)
@@ -1952,13 +1958,13 @@ public boolean mqKilled(Long id, String userId) {
 
 - 不使用容器，直接使用shell脚本，构建一套自动化发布流程。
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210307110405793.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210307110405793.png)
 
 ## 容器化部署
 
 ### 部署流程
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210307111652494.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70#pic_center)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210307111652494.png#pic_center)
 
 - 部署流程有多种构建方式：
   - 脚本化的方式构建：由运维开发自动化的脚本，整合 Dockerfile、Kubernetes 流水线生产环境，来进行项目部署。
@@ -2046,8 +2052,8 @@ docker push hub.veli.com/vshop/vshop-web:v1
 
 - Push 推送镜像到我们的镜像仓库中去：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210307193328993.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210307193328993.png)
 
 - 到harbor仓库查看镜像：
 
-![在这里插入图片描述](https://img-blog.csdnimg.cn/20210307193412197.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lhbmd3ZWkyMzQ=,size_16,color_FFFFFF,t_70)
+![在这里插入图片描述](https://img-blog.csdnimg.cn/20210307193412197.png)

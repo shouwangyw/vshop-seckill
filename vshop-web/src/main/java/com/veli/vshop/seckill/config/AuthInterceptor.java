@@ -8,7 +8,6 @@ import com.veli.vshop.seckill.user.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.util.WebUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author yangwei
  * @date 2021-02-11 09:35
  */
-//@Component
+@Component
 public class AuthInterceptor implements HandlerInterceptor {
     @Resource
     private UserService userService;
